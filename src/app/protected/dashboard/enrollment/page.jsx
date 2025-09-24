@@ -43,7 +43,7 @@ export default function Enrollment() {
       </div>
 
       {/* Enrollment Details */}
-      <div className="flex-1 bg-white dark:bg-gray-800 rounded-lg p-6 shadow flex flex-col justify-between">
+      <div className="flex-1 border bg-white dark:bg-gray-800 rounded-lg p-6 shadow flex flex-col justify-between">
         <h2 className="text-xl font-bold text-gray-700 dark:text-gray-200 mb-4">Enrollment</h2>
 
         {selectedCourse ? (

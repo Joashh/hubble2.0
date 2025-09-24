@@ -34,7 +34,7 @@ export default function Activities() {
             <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
               {stat.title}
             </h2>
-            <p className="text-3xl font-bold mt-2 text-indigo-600 dark:text-indigo-400">
+            <p className="text-3xl font-bold mt-2 text-gray-600 dark:text-indigo-400">
               {stat.count}
             </p>
           </div>

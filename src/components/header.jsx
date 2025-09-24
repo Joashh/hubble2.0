@@ -31,9 +31,9 @@ export default function TopBar() {
             onClick={() => router.push(item.route)}
             className="flex items-center sm:gap-2 text-gray-700 hover:text-black hover:bg-[#e9e9e9] cursor-pointer rounded px-3 py-1 transition"
           >
-            <img src={item.icon} className="w-[25px] h-[25px]" alt={item.label} />
+            <img src={item.icon} className="w-[20px] h-[20px] " alt={item.label} />
             {/* Hide label on small screens */}
-            <span className="font-semibold hidden sm:block">{item.label}</span>
+            <span className="font-semibold hidden sm:block text-sm">{item.label}</span>
           </button>
         ))}
       </div>
