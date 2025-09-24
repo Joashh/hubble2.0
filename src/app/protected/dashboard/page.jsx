@@ -5,10 +5,9 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
   return (
-    <div className="flex h-screen font-sans bg-white">
+    <div className="flex h-full w-full justify-center">
      
-     <SideBar/>
-     <MainContent/>
+      <h1 className="self-center text-center ">home</h1>
      
     </div>
   );

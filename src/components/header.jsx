@@ -1,22 +1,56 @@
-export default function MainContent()
-{
-    return(
-        <main className="flex-1 flex flex-col items-center justify-start px-8 pt-16">
-        <div className="relative w-[700px] h-[55px]">
-          <div className="absolute inset-0 rounded bg-gradient-to-r from-[#FFABAB] to-[#FF6F61] z-0"></div>
-          <input
-            type="text"
-            placeholder="Search ..."
-            className="relative z-10 border-none rounded w-full h-full px-12 bg-transparent placeholder-gray-700 font-semibold"
-            style={{ outline: 'none' }}
-          />
-          <span className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10">
-            <svg width="24" height="24" fill="none" stroke="#FF6F61" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="11" cy="11" r="8"/>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-          </span>
-        </div>
-      </main>
-    );
+'use client'
+
+import { useState, useEffect } from "react";
+import { UserCircleIcon } from '@heroicons/react/24/solid';
+import { LogoutButton } from './logout-button';
+import { useRouter } from 'next/navigation';
+export default function TopBar() {
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+ const navItems = [
+  { label: "Home", icon: "/home-icon.svg", route: "/protected/dashboard/" },
+  { label: "Course", icon: "/courses-icon.svg", route: "/protected/dashboard/course" },
+  { label: "Calendar", icon: "/calendar-icon.svg", route: "/protected/dashboard/calendar" },
+  { label: "Activities", icon: "/activities-icon.svg", route: "/protected/dashboard/activities" },
+  {label: "Enrollment", icon: "/toga.svg", route: "/protected/dashboard/enrollment"},
+];
+
+
+  return (
+    <header className="flex  items-center justify-between  bg-gray-100 p-4 w-full shadow-md">
+     
+     <div className="hidden md:block">
+       <h1 className="font-sans font-extrabold text-3xl">Hubble</h1>
+     </div>
+    
+
+      <div className="flex w-full gap-4 justify-between md:justify-center px-10 sm:px-0">
+        {navItems.map((item) => (
+          <button
+            key={item.label}
+            onClick={() => router.push(item.route)} 
+            className="flex  items-center sm:gap-2   text-gray-700 hover:text-black  hover:bg-[#e9e9e9] cursor-pointer rounded px-3 py-1 transition"
+          >
+            <img src={item.icon} className="w-[25px] h-[25px]" alt={item.label} />
+            <span className="font-semibold hidden sm:block">{item.label}</span>
+          </button>
+        ))}
+      </div>
+
+
+      <div className="hidden md:flex items-center gap-4 ">
+        <UserCircleIcon className="w-10 h-10 text-gray-500" />
+        <LogoutButton />
+      </div>
+
+    </header>
+  );
 }
